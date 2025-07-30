@@ -3,23 +3,23 @@ import Head from 'next/head'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import logoAnimaginary from '@/images/logos/animaginary.svg'
-import youphoria from '@/images/logos/YOUphoria.png'
+// import logoAnimaginary from '@/images/logos/animaginary.svg'
+// import youphoria from '@/images/logos/YOUphoria.png'
 import orb from '@/images/logos/orb.gif'
 import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
-import logoHeart from '@/images/logos/gwc.png'
+// import logoHeart from '@/images/logos/gwc.png'
 
 const projects = [
   {
     name: '배경컬러 스타일',
-    description1:'<div class="bg-zinc-50">', description11:'연한 아연색',
-    description2:'<div class="bg-white">', description22:'흰색',
-    description3:'<div class="bg-gray-100">', description33:'연한 회색',
-    description4:'<div class="bg-blue-50">', description44:'연한 파란색',
-    description5:'<div class="bg-green-50">', description55:'연한 초록색',
-    description6:'<div class="bg-red-50">', description66:'연한 빨간색',
-    description7:'<div class="bg-purple-50">', description77:'연한 보라색',
-    description8:'<div class="bg-slate-100">', description88:'슬레이트 색상',
+    description11:'<div class="bg-zinc-50">', description1:'연한 아연색',
+    description22:'<div class="bg-white">', description2:'흰색',
+    description33:'<div class="bg-gray-100">', description3:'연한 회색',
+    description44:'<div class="bg-blue-50">', description4:'연한 파란색',
+    description55:'<div class="bg-green-50">', description5:'연한 초록색',
+    description66:'<div class="bg-red-50">', description6:'연한 빨간색',
+    description77:'<div class="bg-purple-50">', description7:'연한 보라색',
+    description88:'<div class="bg-slate-100">', description8:'슬레이트 색상',
 
     link: {
       href: 'https://#',
@@ -59,8 +59,8 @@ const projects = [
     description3:'w-96', description33:'384px',
     
     link: {
-      href: 'https://tailwind-animation-exploration.vercel.app/',
-      label: 'tailwind-animation-exploration.vercel.app/',
+      // href: 'https://tailwind-animation-exploration.vercel.app/',
+      // label: 'tailwind-animation-exploration.vercel.app/',
     },
     logo: orb,
   },
@@ -68,7 +68,7 @@ const projects = [
     name: 'Girls Who Code TXST',
     description:
       "I've created the entire structure of our Girls Who Code chapter, including our website! It utilizes Stripe's API to accept donations that fund our events and activities.",
-    link: { href: 'http://gwc-txst.com', label: 'gwc-txst.com' },
+    link: { href: 'http://#', label: '#' },
     logo: logoHeart,
   },
   {
@@ -76,8 +76,8 @@ const projects = [
     description:
       'Creating an ad-free website that highlights the syntax differences between Java and C++ to benefit the curriculum of my Object Oriented Programming class.',
     link: {
-      href: 'https://cpp-vs-java.vercel.app/',
-      label: 'cpp-vs-java.vercel.app',
+      href: 'https://#',
+      label: '#',
     },
     logo: logoAnimaginary,
   },
@@ -121,31 +121,31 @@ export default function Projects() {
         >
           {projects.map((project) => (
             <Card as="li" key={project.name}>
-              <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+              {/* <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
                 <Image
                   src={project.logo}
                   alt=""
                   className="h-8 w-8 rounded-full"
                   unoptimized
                 />
-              </div>
+              </div> */}
               <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
                 <Card.Link href={project.link.href}>{project.name}</Card.Link>
               </h2>
               <Card.Description>
-                <div>{project.description1}{project.description11}</div>
-                <div>{project.description2}{project.description22}</div>
-                <div>{project.description3}{project.description33}</div>
-                <div>{project.description4}{project.description44}</div>
-                <div>{project.description5}{project.description55}</div>
-                <div>{project.description6}{project.description66}</div>
-                <div>{project.description7}{project.description77}</div>
-                <div>{project.description8}{project.description88}</div>
+                <div className="mt-2">{project.description1}<br />{project.description11}</div>
+                <div className="mt-2">{project.description2}<br />{project.description22}</div>
+                <div className="mt-2">{project.description3}<br />{project.description33}</div>
+                <div className="mt-2">{project.description4}<br />{project.description44}</div>
+                <div className="mt-2">{project.description5}<br />{project.description55}</div>
+                <div className="mt-2">{project.description6}<br />{project.description66}</div>
+                <div className="mt-2">{project.description7}<br />{project.description77}</div>
+                <div className="mt-2">{project.description8}<br />{project.description88}</div>
               </Card.Description>
-              <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-slate-600 dark:text-zinc-200">
+              {/* <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-slate-600 dark:text-zinc-200">
                 <LinkIcon className="h-6 w-6 flex-none" />
                 <span className="ml-2">{project.link.label}</span>
-              </p>
+              </p> */}
             </Card>
           ))}
         </ul>

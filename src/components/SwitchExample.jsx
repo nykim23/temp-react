@@ -10,8 +10,8 @@ const SwitchExample = () => {
     };
 
     return (
-        <label>
-            <span>토글버튼 왼쪽 오른쪽</span>
+        <label className="flex">
+            <span className="rounded p-2 bg-gray-500 text-gray-200">토글버튼 왼쪽 오른쪽</span>
             <CustomSwitch onChange={handleChange} checked={checked} />
         </label>
     )

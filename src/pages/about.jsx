@@ -82,6 +82,8 @@ export default function About() {
   const [ isPopup2Open, setIsPopup2Open ] = useState(false);
   const [ isPopup3Open, setIsPopup3Open ] = useState(false);
 
+  
+
   return (
     <>
       <Head>
@@ -92,23 +94,23 @@ export default function About() {
         />
       </Head>
       <Container className="mt-16 sm:mt-32">
-        <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
+        <div className="bg-slate-400 p-8 rounded">
           <div className="temp-title">탭메뉴</div>
-          <div className="lg:pl-20">
+          <div className="lg:pl-2 mt-2">
             <TabMenu />
           </div>
-          <div className="temp-title">아코디언메뉴</div>
-          <div className="lg:order-first lg:row-span-2">
+          <div className="temp-title mt-8">아코디언메뉴</div>
+          <div className="lg:order-first lg:row-span-2 mt-2">
             <Accordion panels={panels} />
           </div>
-          <div className="temp-title">토글 (Toggle switch)</div>
-          <div className="lg:pl-20">
+          <div className="temp-title mt-8">토글 (Toggle switch)</div>
+          <div className="lg:pl-2 mt-2">
             <SwitchExample />
           </div>
 
 
-          <div className="temp-title">레이어팝업</div>
-          <div className="lg:pl-20">
+          <div className="temp-title mt-8">레이어팝업</div>
+          <div className="lg:pl-2 mt-2">
             <button 
               className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 hover:-translate-y-1"
               onClick={() => setIsPopup1Open(true)}
