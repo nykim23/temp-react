@@ -166,7 +166,7 @@ function Resume() {
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
             <div>
-              <a href={role.link} target="_blank">{role.link}</a>
+              <a href={role.link} target="_blank" rel="noreferrer">{role.link}</a>
             </div>
             <dl className="flex flex-auto flex-wrap gap-x-2">
               <dt className="sr-only">Company</dt>

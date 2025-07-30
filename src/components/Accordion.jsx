@@ -26,7 +26,7 @@ const Panel = ({ label, content, activeTab, index, activateTab }) => {
     return (
         <div 
             className="panel  border-b border-gray-200"
-            role="tabpanel"
+            role="button"
             aria-expanded={isActive}
         >
             <button 
