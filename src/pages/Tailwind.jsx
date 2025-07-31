@@ -5,8 +5,8 @@ import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 // import logoAnimaginary from '@/images/logos/animaginary.svg'
 // import youphoria from '@/images/logos/YOUphoria.png'
-import orb from '@/images/logos/orb.gif'
-import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
+// import orb from '@/images/logos/orb.gif'
+// import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
 // import logoHeart from '@/images/logos/gwc.png'
 
 const projects = [
@@ -24,7 +24,7 @@ const projects = [
     link: {
       href: 'https://#',
     },
-    logo: youphoria,
+    // logo: youphoria,
   },
   {
     name: '기본 숫자 기본단위(4px 단위)',
@@ -62,14 +62,14 @@ const projects = [
       // href: 'https://tailwind-animation-exploration.vercel.app/',
       // label: 'tailwind-animation-exploration.vercel.app/',
     },
-    logo: orb,
+    // logo: orb,
   },
   {
     name: 'Girls Who Code TXST',
     description:
       "I've created the entire structure of our Girls Who Code chapter, including our website! It utilizes Stripe's API to accept donations that fund our events and activities.",
     link: { href: 'http://#', label: '#' },
-    logo: logoHeart,
+    // logo: logoHeart,
   },
   {
     name: 'Java vs. C++',
@@ -79,7 +79,7 @@ const projects = [
       href: 'https://#',
       label: '#',
     },
-    logo: logoAnimaginary,
+    // logo: logoAnimaginary,
   },
   // {
   //   name: 'OpenShuttle',
@@ -130,7 +130,11 @@ export default function Projects() {
                 />
               </div> */}
               <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-                <Card.Link href={project.link.href}>{project.name}</Card.Link>
+                
+                {project.link.href ? (
+                  <Card.Link href={project.link.href}>{project.name}</Card.Link>
+                ) : null }
+                
               </h2>
               <Card.Description>
                 <div className="mt-2">{project.description1}<br />{project.description11}</div>
