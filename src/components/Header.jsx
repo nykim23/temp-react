@@ -167,7 +167,7 @@ function DesktopNavigation(props) {
         {/* <NavItem href="/articles">Articles</NavItem> */}
         <NavItem href="/projects">Projects</NavItem>
         <NavItem href="/speaking">Speaking</NavItem>
-        <NavItem href="/Tailwind">Tailwind CSS</NavItem>
+        {/* <NavItem href="/Tailwind">Tailwind CSS</NavItem> */}
         {/* <NavItem href="/uses">Uses</NavItem> */}
       </ul>
     </nav>
@@ -220,7 +220,7 @@ function AvatarContainer({ className, ...props }) {
     <div
       className={clsx(
         className,
-        'h-10 w-10 rounded-full p-0.5 shadow-lg shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10'
+        'h-10 rounded-full p-0.5 dark:bg-zinc-800/90 dark:ring-white/10'
       )}
       {...props}
     />
@@ -245,7 +245,11 @@ function Avatar({ large = false, className, ...props }) {
         )}
         priority
       /> */}
-      <FcReddit className="avatar-icon" />
+      <div className="flex items-center">
+        <FcReddit className="avatar-icon" />
+        <div>React Template</div>
+      </div>
+      
     </Link>
     
   )
@@ -404,7 +408,7 @@ export function Header() {
             className="top-[var(--header-top,theme(spacing.6))] w-full"
             style={{ position: 'var(--header-inner-position)' }}
           >
-            <div className="relative flex gap-4 header-top-box">
+            <div className="relative flex gap-4 header-top-box justify-between">
               <div className="flex flex-none">
                 {!isHomePage && (
                   <AvatarContainer>
@@ -412,14 +416,11 @@ export function Header() {
                   </AvatarContainer>
                 )}
               </div>
-              <div className="flex flex-1">
-                <div>React Template</div>
-              </div>
               <div className="flex justify-end md:justify-center">
                 <MobileNavigation className="pointer-events-auto md:hidden" />
                 <DesktopNavigation className="pointer-events-auto hidden md:block" />
               </div>
-              <div className="flex justify-end md:flex-1">
+              <div className="flex">
                 <div className="pointer-events-auto">
                   <ModeToggle />
                 </div>

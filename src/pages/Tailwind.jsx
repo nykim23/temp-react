@@ -36,7 +36,6 @@ const projects = [
     width5:'w-4', description33:'16px',
     width6:'w-5', description33:'20px',
     description7:'w-6', description33:'24px',
-    // description3:'w-7', description33:'20px',
     description3:'w-8', description33:'32px',
     description3:'w-10', description33:'40px',
     description3:'w-12', description33:'48px',

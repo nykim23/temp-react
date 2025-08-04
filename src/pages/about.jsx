@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 
 import Image from 'next/future/image'
 import Head from 'next/head'
@@ -20,8 +20,31 @@ import Accordion from '@/components/Accordion';
 import SwitchExample from '@/components/SwitchExample';
 import LayerPopup from '@/components/LayerPopup';
 
+import Counter from '@/components/Count';
 
+// 클라이언트 전용 래퍼 컴포넌트
+const ClientOnly = ({ children }) => {
+  const [mounted, setMounted] = useState(false);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <Container className="mt-16 sm:mt-32">
+        <div className="bg-slate-400 p-8 rounded">
+          <div className="temp-title">로딩 중...</div>
+          <div className="lg:pl-2 mt-2">
+            <div className="animate-pulse bg-gray-300 h-8 rounded"></div>
+          </div>
+        </div>
+      </Container>
+    );
+  }
+
+  return children;
+};
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
@@ -48,8 +71,7 @@ function MailIcon(props) {
   )
 }
 
-export default function About() {
-
+function AboutContent() {
   const panels = [
     {
       label:'1',
@@ -77,93 +99,79 @@ export default function About() {
     },
   ]
 
-
   const [ isPopup1Open, setIsPopup1Open ] = useState(false);
   const [ isPopup2Open, setIsPopup2Open ] = useState(false);
   const [ isPopup3Open, setIsPopup3Open ] = useState(false);
 
-  
-
   return (
-    <>
-      <Head>
-        <title>React Template</title>
-        <meta
-          name="description"
-          content="React Template"
-        />
-      </Head>
-      <Container className="mt-16 sm:mt-32">
-        <div className="bg-slate-400 p-8 rounded">
-          <div className="temp-title">탭메뉴</div>
-          <div className="lg:pl-2 mt-2">
-            <TabMenu />
-          </div>
-          <div className="temp-title mt-8">아코디언메뉴</div>
-          <div className="lg:order-first lg:row-span-2 mt-2">
-            <Accordion panels={panels} />
-          </div>
-          <div className="temp-title mt-8">토글 (Toggle switch)</div>
-          <div className="lg:pl-2 mt-2">
-            <SwitchExample />
-          </div>
+    <Container className="mt-16 sm:mt-32">
+      <div className="bg-slate-400 p-8 rounded">
+        <div className="temp-title">탭메뉴</div>
+        <div className="lg:pl-2 mt-2">
+          <TabMenu />
+        </div>
+        <div className="temp-title mt-8">아코디언메뉴</div>
+        <div className="lg:order-first lg:row-span-2 mt-2">
+          <Accordion panels={panels} />
+        </div>
+        <div className="temp-title mt-8">토글 (Toggle switch)</div>
+        <div className="lg:pl-2 mt-2">
+          <SwitchExample />
+        </div>
 
-
-          <div className="temp-title mt-8">레이어팝업</div>
-          <div className="lg:pl-2 mt-2">
-            <button 
-              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 hover:-translate-y-1"
-              onClick={() => setIsPopup1Open(true)}
-            >
-              기본 팝업 열기
-            </button>
-
-
-            <button 
-              className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 hover:shadow-lg hover:-translate-y-1 ml-4"
-              onClick={() => setIsPopup2Open(true)}
-            >
-              폼 팝업 열기
-            </button>
-
-            <button 
-              className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 hover:shadow-lg hover:-translate-y-1 ml-4"
-              onClick={() => setIsPopup3Open(true)}
-            >
-              큰 팝업 열기
-            </button>
-          </div>
-
-          {/* 기본 팝업 */}
-          <LayerPopup
-            isOpen={isPopup1Open}
-            onClose={() => setIsPopup1Open(false)}
-            title="기본 팝업"
+        <div className="temp-title mt-8">레이어팝업</div>
+        <div className="lg:pl-2 mt-2">
+          <button 
+            className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 hover:-translate-y-1"
+            onClick={() => setIsPopup1Open(true)}
           >
-            <div className="space-y-4">
-              <p className="text-gray-600">
-                이것은 기본 레이어 팝업 입니다.
-              </p>
-              <p className="text-gray-600">배경을 클릭하거나 X버튼을 클릭하면 닫힘</p>
-              <div className="flex justify-end space-x-2 pt-4">
-                <button 
-                  className="px-4 py-2 text-gray-500 hover:text-gray-700 transition-all duration-200 hover:bg-gray-100 rounded transform hover:scale-105 active:scale-95"
-                  onClick={() => setIsPopup1Open(false)}
-                >
-                  취소
-                </button>
-                <button 
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-all duration-200 transform hover:scale-105 active:scale-95 hover:shadow-lg"
-                  onClick={() => setIsPopup1Open(false)}
-                >
-                  확인
-                </button>
-              </div>
+            기본 팝업 열기
+          </button>
+
+          <button 
+            className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 hover:shadow-lg hover:-translate-y-1 ml-4"
+            onClick={() => setIsPopup2Open(true)}
+          >
+            폼 팝업 열기
+          </button>
+
+          <button 
+            className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 hover:shadow-lg hover:-translate-y-1 ml-4"
+            onClick={() => setIsPopup3Open(true)}
+          >
+            큰 팝업 열기
+          </button>
+        </div>
+
+        {/* 기본 팝업 */}
+        <LayerPopup
+          isOpen={isPopup1Open}
+          onClose={() => setIsPopup1Open(false)}
+          title="기본 팝업"
+        >
+          <div className="space-y-4">
+            <p className="text-gray-600">
+              이것은 기본 레이어 팝업 입니다.
+            </p>
+            <p className="text-gray-600">배경을 클릭하거나 X버튼을 클릭하면 닫힘</p>
+            <div className="flex justify-end space-x-2 pt-4">
+              <button 
+                className="px-4 py-2 text-gray-500 hover:text-gray-700 transition-all duration-200 hover:bg-gray-100 rounded transform hover:scale-105 active:scale-95"
+                onClick={() => setIsPopup1Open(false)}
+              >
+                취소
+              </button>
+              <button 
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-all duration-200 transform hover:scale-105 active:scale-95 hover:shadow-lg"
+                onClick={() => setIsPopup1Open(false)}
+              >
+                확인
+              </button>
             </div>
-          </LayerPopup>
+          </div>
+        </LayerPopup>
 
-
-          {/* 폼 팝업 */}
+        {/* 폼 팝업 */}
         <LayerPopup
           isOpen={isPopup2Open}
           onClose={() => setIsPopup2Open(false)}
@@ -269,20 +277,39 @@ export default function About() {
           </div>
         </LayerPopup>
 
-          <div className="temp-title">토글 (Colored draggable switch with label)</div>
-          <div className="lg:pl-20">
-            <ul role="list">
-              <SocialLink
-                href="mailto:vjordan.cs@gmail.com"
-                icon={MailIcon}
-                className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
-              >
-                vjordan.cs@gmail.com
-              </SocialLink>
-            </ul>
-          </div>
+        <div className="temp-title">count</div>
+        <Counter />
+
+        <div className="temp-title">토글 (Colored draggable switch with label)</div>
+        <div className="lg:pl-20">
+          <ul role="list">
+            <SocialLink
+              href="mailto:vjordan.cs@gmail.com"
+              icon={MailIcon}
+              className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
+            >
+              vjordan.cs@gmail.com
+            </SocialLink>
+          </ul>
         </div>
-      </Container>
+      </div>
+    </Container>
+  );
+}
+
+export default function About() {
+  return (
+    <>
+      <Head>
+        <title>React Template</title>
+        <meta
+          name="description"
+          content="React Template"
+        />
+      </Head>
+      <ClientOnly>
+        <AboutContent />
+      </ClientOnly>
     </>
   )
 }
